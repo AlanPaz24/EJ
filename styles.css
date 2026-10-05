@@ -1,0 +1,196 @@
+:root{--primary-navy:#0F2537;--secondary-blue:#005A9C;--accent-cyan:#00A3E0;--bg-light:#F4F7FA;--bg-card:#FFF;--text-main:#1A2B3C;--text-muted:#5A6B7C;--border-color:#E2E8F0;--whatsapp-color:#25D366;--font-family:'Plus Jakarta Sans',sans-serif;--radius:12px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:var(--font-family);background:var(--bg-light);color:var(--text-main);line-height:1.6}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+
+/* Navbar */
+.navbar{background:var(--bg-card);border-bottom:1px solid var(--border-color);padding:16px 0;position:sticky;top:0;z-index:100}
+.nav-container{display:flex;justify-content:space-between;align-items:center}
+.brand-name{display:block;font-weight:700;font-size:1.15rem;color:var(--primary-navy)}
+.brand-title{font-size:.8rem;color:var(--text-muted)}
+.nav-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.nav-actions .btn{padding:8px 14px;font-size:.85rem}
+.nav-toggle{display:none;background:none;border:0;cursor:pointer;padding:8px;flex-direction:column;gap:5px}
+.nav-toggle span{display:block;width:24px;height:2px;background:var(--primary-navy);border-radius:2px;transition:transform .25s,opacity .2s}
+.nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle.open span:nth-child(2){opacity:0}
+.nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* Botones */
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 20px;border-radius:8px;font-weight:600;font-size:.9rem;text-decoration:none;cursor:pointer;border:1px solid transparent;transition:all .2s ease;gap:8px;font-family:inherit}
+.btn-primary{background:var(--secondary-blue);color:#fff}
+.btn-primary:hover{background:var(--primary-navy)}
+.btn-secondary{background:var(--primary-navy);color:#fff}
+.btn-outline{border-color:var(--secondary-blue);color:var(--secondary-blue);background:transparent}
+.btn-outline:hover{background:var(--secondary-blue);color:#fff}
+.btn-whatsapp{background:var(--whatsapp-color);color:#fff;margin-top:15px}
+.btn-whatsapp:hover{background:#1eb956}
+.btn-full{width:100%}
+
+/* Hero */
+.hero{padding:70px 0;background:linear-gradient(180deg,#FFF 0%,var(--bg-light) 100%)}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
+.badge{background:#E6F4FA;color:var(--secondary-blue);padding:6px 14px;border-radius:20px;font-size:.8rem;font-weight:600;text-transform:uppercase;display:inline-block;margin-bottom:12px}
+.hero-text h1{font-size:2.5rem;color:var(--primary-navy);margin-bottom:16px;line-height:1.2}
+.hero-text p{color:var(--text-muted);font-size:1.1rem;margin-bottom:28px}
+.hero-buttons{display:flex;gap:16px}
+.profile-card-hero{background:var(--bg-card);padding:30px;border-radius:var(--radius);box-shadow:0 10px 30px rgba(15,37,55,.08);border:1px solid var(--border-color);text-align:center}
+.avatar-container{width:120px;height:120px;margin:0 auto 16px;border-radius:50%;overflow:hidden;border:3px solid var(--secondary-blue);background:var(--primary-navy)}
+.profile-img-hero{width:100%;height:100%;object-fit:cover}
+.profile-card-hero h3{color:var(--primary-navy);font-size:1.3rem}
+.profile-subtitle{font-size:.85rem;color:var(--text-muted);margin-bottom:14px}
+.profile-quote{font-style:italic;font-size:.9rem;background:var(--bg-light);padding:12px 16px;border-left:3px solid var(--secondary-blue);border-radius:4px}
+
+/* Sobre mí */
+.about-section{padding:80px 0;background:var(--bg-card);border-top:1px solid var(--border-color)}
+.about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:center}
+.about-image-wrapper{position:relative}
+.about-img{width:100%;border-radius:var(--radius);box-shadow:0 15px 35px rgba(15,37,55,.12);object-fit:cover;min-height:380px;background:var(--primary-navy)}
+.experience-badge{position:absolute;bottom:-20px;right:-20px;background:var(--primary-navy);color:#fff;padding:16px 24px;border-radius:var(--radius);display:flex;align-items:center;gap:12px;box-shadow:0 10px 20px rgba(0,0,0,.15)}
+.exp-number{font-size:2.2rem;font-weight:700;color:var(--accent-cyan);line-height:1}
+.exp-text{font-size:.85rem;font-weight:600;line-height:1.2}
+.about-content h2{font-size:2.2rem;color:var(--primary-navy);margin-bottom:16px}
+.about-lead{font-size:1.1rem;font-weight:600;color:var(--secondary-blue);margin-bottom:16px}
+.about-content p{color:var(--text-muted);margin-bottom:16px}
+.about-stats{display:flex;gap:30px;margin-top:28px;padding-top:20px;border-top:1px solid var(--border-color)}
+.stat-item h4{font-size:1.6rem;color:var(--primary-navy)}
+.stat-item p{font-size:.85rem;margin-bottom:0}
+
+/* Calculadora */
+.calculator-section{padding:80px 0;background:var(--bg-light);border-top:1px solid var(--border-color);border-bottom:1px solid var(--border-color)}
+.calculator-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.calc-inputs-card{background:var(--bg-card);padding:30px;border-radius:var(--radius);border:1px solid var(--border-color);display:flex;flex-direction:column;justify-content:center}
+.field-group{margin-bottom:18px}
+.field-group label{display:block;font-weight:600;font-size:.88rem;margin-bottom:6px;color:var(--primary-navy)}
+.input-wrapper{display:flex;align-items:center;border:1px solid var(--border-color);border-radius:8px;padding:0 14px;background:var(--bg-light);transition:border-color .2s}
+.input-wrapper:focus-within{border-color:var(--secondary-blue);background:#fff}
+.input-wrapper input{width:100%;padding:10px 0;border:none;background:transparent;font-size:1.05rem;font-weight:700;color:var(--primary-navy);outline:none;font-family:inherit}
+.currency,.unit{font-weight:600;color:var(--text-muted);font-size:.9rem}
+.currency{margin-right:6px}
+.unit{margin-left:6px}
+.field-help{display:block;font-size:.75rem;color:var(--text-muted);margin-top:4px}
+.rate-info-box{background:#E6F4FA;border-left:4px solid var(--secondary-blue);padding:12px 16px;border-radius:6px;font-size:.85rem;color:var(--primary-navy);display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:10px}
+.calc-results-card{background:var(--primary-navy);color:#fff;padding:30px;border-radius:var(--radius);display:flex;flex-direction:column;justify-content:space-between}
+.result-metric{margin:15px 0;text-align:center}
+.metric-label{display:block;font-size:.85rem;opacity:.8}
+.metric-value{font-size:2.3rem;font-weight:700;color:var(--accent-cyan)}
+.results-breakdown{background:rgba(255,255,255,.06);padding:16px;border-radius:8px}
+.breakdown-item{display:flex;justify-content:space-between;gap:10px;padding:8px 0;font-size:.88rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.rentas-header{font-weight:700;font-size:.85rem;color:var(--accent-cyan);margin:14px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+.sub-item{padding-left:8px;font-size:.85rem}
+.highlight-text{color:var(--accent-cyan)}
+.calc-disclaimer{font-size:.72rem;opacity:.65;margin-top:12px;line-height:1.3}
+
+/* Secciones comunes */
+.section-title{margin-bottom:40px}
+.section-title h2{font-size:2rem;color:var(--primary-navy)}
+.section-title p{color:var(--text-muted)}
+.text-center{text-align:center}
+.card-icon{font-size:2.2rem;margin-bottom:12px}
+
+/* Seguros de vida */
+.life-section{padding:80px 0;background:var(--bg-light);border-bottom:1px solid var(--border-color)}
+.life-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-bottom:32px}
+.life-card{background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius);padding:28px}
+.life-card h3{color:var(--primary-navy);font-size:1.15rem;margin-bottom:8px}
+.life-card p{color:var(--text-muted);font-size:.9rem}
+
+/* Patrimoniales */
+.patrimoniales-section{padding:80px 0;background:var(--bg-card)}
+.tab-buttons{display:flex;justify-content:center;flex-wrap:wrap;gap:16px;margin-bottom:40px}
+.tab-btn{padding:12px 28px;border-radius:30px;border:1px solid var(--border-color);background:var(--bg-light);font-weight:600;font-size:1rem;color:var(--text-muted);cursor:pointer;transition:all .25s;font-family:inherit}
+.tab-btn.active,.tab-btn:hover{background:var(--primary-navy);color:#fff;border-color:var(--primary-navy);box-shadow:0 4px 12px rgba(15,37,55,.15)}
+.tab-content{display:none}
+.tab-content.active{display:block}
+.insurance-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
+.insurance-card{background:var(--bg-light);border:1px solid var(--border-color);padding:28px;border-radius:var(--radius);display:flex;flex-direction:column;justify-content:space-between;text-align:left;transition:transform .2s,box-shadow .2s}
+.insurance-card:hover{transform:translateY(-4px);box-shadow:0 10px 25px rgba(0,0,0,.05)}
+.insurance-card h3{font-size:1.15rem;color:var(--primary-navy);margin-bottom:8px}
+.insurance-card p{font-size:.88rem;color:var(--text-muted);margin-bottom:20px}
+
+/* Coberturas */
+.coverage-section{padding:80px 0;background:var(--bg-light);border-top:1px solid var(--border-color)}
+.coverage-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.coverage-col{background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius);padding:26px}
+.coverage-col h3{color:var(--primary-navy);font-size:1.05rem;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--accent-cyan)}
+.coverage-wide{grid-column:1/-1}
+.check-list{list-style:none}
+.check-list li{position:relative;padding:5px 0 5px 26px;font-size:.92rem;color:var(--text-main)}
+.check-list li::before{content:"✓";position:absolute;left:0;top:7px;width:18px;height:18px;border-radius:50%;background:var(--secondary-blue);color:#fff;font-size:.7rem;display:flex;align-items:center;justify-content:center}
+.check-list.two-cols{columns:2;column-gap:30px}
+.check-list.two-cols li{break-inside:avoid}
+
+/* Compañías */
+.insurers-section{padding:80px 0;background:var(--bg-card);border-top:1px solid var(--border-color)}
+.insurers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.insurer{background:var(--bg-light);border:1px solid var(--border-color);border-radius:10px;padding:18px 14px;text-align:center;display:flex;flex-direction:column;justify-content:center;gap:4px;min-height:72px}
+.insurer strong{color:var(--secondary-blue);font-size:.95rem}
+.insurer small{color:var(--text-muted);font-size:.7rem;line-height:1.3}
+
+/* Por qué elegirme */
+.why-section{padding:80px 0;background:var(--bg-light);border-top:1px solid var(--border-color)}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+.why-card{background:var(--bg-card);border-radius:var(--radius);padding:26px;box-shadow:0 4px 14px rgba(15,37,55,.07);border:1px solid var(--border-color)}
+.why-num{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;font-weight:700;font-size:.9rem;margin-bottom:14px}
+.n1{background:#DDF6EE;color:#0E9F78}.n2{background:#E6F4FA;color:var(--secondary-blue)}.n3{background:#E4EAF3;color:var(--primary-navy)}.n4{background:#E3F0FF;color:#2F7DE1}
+.why-card h3{color:var(--primary-navy);font-size:1.1rem;margin-bottom:8px}
+.why-card p{color:var(--text-muted);font-size:.9rem}
+
+/* Pilares */
+.pillars-section{padding:80px 20px}
+.pillars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.pillar-card{background:var(--bg-card);padding:28px;border-radius:var(--radius);border:1px solid var(--border-color);text-align:center}
+.pillar-icon{font-size:2rem;margin-bottom:14px}
+.pillar-card h3{font-size:1.15rem;color:var(--primary-navy);margin-bottom:10px}
+.pillar-card p{font-size:.9rem;color:var(--text-muted)}
+
+/* Proceso */
+.process-section{padding:80px 0;background:var(--bg-card);border-top:1px solid var(--border-color)}
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:24px}
+.step{text-align:center;padding:8px}
+.step-num{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:var(--primary-navy);color:var(--accent-cyan);font-weight:700;margin-bottom:12px}
+.step h3{color:var(--primary-navy);font-size:1.1rem;margin-bottom:6px}
+.step p{color:var(--text-muted);font-size:.9rem}
+
+/* FAQ */
+.faq-section{padding:80px 0;background:var(--bg-light)}
+.faq-container{max-width:780px}
+.faq-item{background:var(--bg-card);border:1px solid var(--border-color);border-radius:10px;margin-bottom:12px;padding:0 20px}
+.faq-item summary{cursor:pointer;font-weight:600;color:var(--primary-navy);padding:16px 0;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:"+";font-size:1.3rem;color:var(--secondary-blue)}
+.faq-item[open] summary::after{content:"–"}
+.faq-item p{color:var(--text-muted);font-size:.92rem;padding-bottom:16px}
+
+/* Contacto */
+.contact-section{padding:70px 0;background:var(--bg-card);border-top:1px solid var(--border-color)}
+.contact-card{max-width:600px;margin:0 auto;background:var(--bg-light);padding:40px;border-radius:var(--radius);border:1px solid var(--border-color);text-align:center}
+.form-grid{display:flex;flex-direction:column;gap:16px;margin-top:24px}
+.form-grid input{padding:14px;border:1px solid var(--border-color);border-radius:8px;font-size:.95rem;font-family:inherit}
+
+/* WhatsApp flotante */
+.whatsapp-float{position:fixed;width:60px;height:60px;bottom:25px;right:25px;background:var(--whatsapp-color);color:#fff;border-radius:50%;box-shadow:0 4px 15px rgba(37,211,102,.4);z-index:999;display:flex;align-items:center;justify-content:center;transition:transform .3s,box-shadow .3s;text-decoration:none}
+.whatsapp-float:hover{transform:scale(1.1);box-shadow:0 6px 20px rgba(37,211,102,.6)}
+
+/* Footer */
+footer{background:var(--primary-navy);color:#fff;padding:30px 0;text-align:center;font-size:.85rem}
+.footer-disclaimer{opacity:.6;margin:10px auto 0;max-width:700px;font-size:.75rem}
+
+/* Responsivo */
+@media (max-width:1000px){.nav-actions .btn{padding:8px 10px;font-size:.8rem}}
+@media (max-width:850px){
+  .hero-grid,.about-grid,.calculator-grid,.pillars-grid{grid-template-columns:1fr}
+  .nav-toggle{display:flex}
+  .nav-actions{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:10px;padding:16px 20px 20px;background:var(--bg-card);border-bottom:1px solid var(--border-color);box-shadow:0 12px 24px rgba(15,37,55,.1)}
+  .nav-actions.open{display:flex}
+  .nav-actions .btn{padding:12px;font-size:.95rem}
+  .hero-text h1{font-size:1.9rem}
+  .hero-buttons{flex-direction:column}
+  .about-image-wrapper{margin-bottom:30px}
+  .experience-badge{right:10px;bottom:-10px}
+  .about-stats{flex-wrap:wrap;gap:20px}
+  .metric-value{font-size:1.9rem}
+  .contact-card{padding:28px 20px}
+  .check-list.two-cols{columns:1}
+}

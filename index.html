@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Esteban Jiménez | Planificación Financiera & Patrimonial</title>
+<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="navbar">
+  <div class="container nav-container">
+    <div class="brand-info">
+      <span class="brand-name">Esteban Jiménez</span>
+      <span class="brand-title">Planificación Financiera & Patrimonial</span>
+    </div>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-actions"><span></span><span></span><span></span></button>
+    <nav class="nav-actions" id="nav-actions">
+      <a href="#sobre-mi" class="btn btn-outline">Sobre Mí</a>
+      <a href="#calculadora" class="btn btn-outline">Proyectar Retiro</a>
+      <a href="#seguros-vida" class="btn btn-outline">Seguros de Vida</a>
+      <a href="#patrimoniales" class="btn btn-outline">Seguros Patrimoniales</a>
+      <a href="#faq" class="btn btn-outline">Preguntas</a>
+      <a href="#contacto" class="btn btn-primary">Agendar Reunión</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-text">
+      <span class="badge">Asesoría Financiera Independiente</span>
+      <h1>Construí la tranquilidad financiera que querés, a tu propio ritmo.</h1>
+      <p>Estrategias a medida de ahorro, inversión y resguardo patrimonial diseñadas para proteger tu futuro y el de tu empresa.</p>
+      <div class="hero-buttons">
+        <a href="#calculadora" class="btn btn-primary">Simular Fondo de Retiro</a>
+        <a href="#contacto" class="btn btn-secondary">Coordinar una Entrevista</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="profile-card-hero">
+        <div class="avatar-container"><img src="esteban.jpg" alt="Esteban Jiménez" class="profile-img-hero" id="hero-img-fallback"></div>
+        <h3>Esteban Jiménez</h3>
+        <p class="profile-subtitle">Asesor Integral de Inversiones & Retiro</p>
+        <p class="profile-quote">"Un plan financiero sólido te da la libertad de elegir cómo querés vivir tu futuro."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sobre-mi" class="about-section">
+  <div class="container about-grid">
+    <div class="about-image-wrapper">
+      <img src="esteban-profile.jpg" alt="Esteban Jiménez Asesor Financiero" class="about-img" id="about-img-fallback">
+      <div class="experience-badge"><span class="exp-number">+10</span><span class="exp-text">Años de Trayectoria</span></div>
+    </div>
+    <div class="about-content">
+      <span class="badge">Quién Soy</span>
+      <h2>Hola, soy Esteban Jiménez</h2>
+      <p class="about-lead">Mi objetivo es acompañarte a construir la tranquilidad financiera que necesitás para tu futuro y el de tu familia.</p>
+      <p>Desde hace más de 10 años me dedico a la planificación financiera y la gestión patrimonial independiente. A lo largo de mi carrera he ayudado a cientos de personas, familias y PyMEs a organizar sus recursos, proteger sus ahorros frente a la inflación y diseñar coberturas a medida.</p>
+      <p>Trabajo con un enfoque 100% independiente: analizo tu situación particular y buscamos la mejor alternativa del mercado que responda exactamente a tus metas reales.</p>
+      <div class="about-stats">
+        <div class="stat-item"><h4>+500</h4><p>Clientes Asesorados</p></div>
+        <div class="stat-item"><h4>10+</h4><p>Años de Experiencia</p></div>
+        <div class="stat-item"><h4>100%</h4><p>Atención Personalizada</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="calculadora" class="calculator-section">
+  <div class="container">
+    <div class="section-title text-center">
+      <h2>Simulador de Fondo de Retiro</h2>
+      <p>Ingresá tus datos para estimar el capital acumulado y las opciones de renta para tu retiro.</p>
+    </div>
+    <div class="calculator-grid">
+      <div class="calc-inputs-card">
+        <div class="field-group">
+          <label for="edad-actual">Edad actual</label>
+          <div class="input-wrapper"><input type="number" id="edad-actual" value="30" min="18" max="80"><span class="unit">años</span></div>
+        </div>
+        <div class="field-group">
+          <label for="edad-retiro">Edad deseada de retiro</label>
+          <div class="input-wrapper"><input type="number" id="edad-retiro" value="65" min="40" max="90"><span class="unit">años</span></div>
+        </div>
+        <div class="field-group">
+          <label for="ahorro-inicial">Ahorro previo / Capital inicial (Opcional)</label>
+          <div class="input-wrapper"><span class="currency">$</span><input type="number" id="ahorro-inicial" value="0" min="0" step="500"><span class="unit">USD</span></div>
+          <small class="field-help">Monto con el que contás o podrías arrancar tu plan hoy.</small>
+        </div>
+        <div class="field-group">
+          <label for="ahorro-mensual">Ahorro mensual previsto</label>
+          <div class="input-wrapper"><span class="currency">$</span><input type="number" id="ahorro-mensual" value="300" min="50" step="50"><span class="unit">USD</span></div>
+        </div>
+        <div class="rate-info-box"><span>Rendimiento proyectado de referencia:</span><strong>7.0% anual en USD</strong></div>
+      </div>
+
+      <div class="calc-results-card">
+        <h3>Proyección Estimada</h3>
+        <div class="result-metric">
+          <span class="metric-label">Capital Total Proyectado</span>
+          <span id="monto-final" class="metric-value">$0 USD</span>
+        </div>
+        <div class="results-breakdown">
+          <div class="breakdown-item"><span>Tiempo de capitalización:</span><strong id="anios-totales">35 años</strong></div>
+          <div class="breakdown-item"><span>Aporte total estimado:</span><strong id="monto-aportado">$0 USD</strong></div>
+          <div class="breakdown-item"><span>Rendimiento generado (7% p.a.):</span><strong id="monto-ganancia" class="highlight-text">$0 USD</strong></div>
+          <div class="rentas-header">Renta mensual estimada según plazo:</div>
+          <div class="breakdown-item sub-item"><span>⏱️ Durante 10 años:</span><strong id="renta-10">$0 USD/mes</strong></div>
+          <div class="breakdown-item sub-item"><span>⏱️ Durante 15 años:</span><strong id="renta-15">$0 USD/mes</strong></div>
+          <div class="breakdown-item sub-item"><span>⏱️ Durante 20 años:</span><strong id="renta-20">$0 USD/mes</strong></div>
+          <div class="breakdown-item sub-item"><span>⏱️ Durante 25 años:</span><strong id="renta-25">$0 USD/mes</strong></div>
+        </div>
+        <p class="calc-disclaimer">*Proyección ilustrativa. La rentabilidad real depende de la estrategia seleccionada, perfil de riesgo y contexto inflacionario.</p>
+        <button id="btn-whatsapp-calc" class="btn btn-whatsapp btn-full">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+          Enviar este cálculo a Esteban por WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="seguros-vida" class="life-section">
+  <div class="container">
+    <div class="section-title text-center">
+      <span class="badge">Protección Familiar</span>
+      <h2>Seguros de Vida & Ahorro</h2>
+      <p>Cuidá a quienes dependen de vos y construí capital al mismo tiempo.</p>
+    </div>
+    <div class="life-grid">
+      <div class="life-card"><div class="card-icon">❤️</div><h3>Vida Individual</h3><p>Un capital para tu familia ante fallecimiento o invalidez, con la suma asegurada que vos elijas.</p></div>
+      <div class="life-card"><div class="card-icon">🎓</div><h3>Ahorro para Metas</h3><p>Planes en dólares para estudios, una casa o tu retiro, con aportes que se adaptan a tu bolsillo.</p></div>
+      <div class="life-card"><div class="card-icon">👨‍👩‍👧</div><h3>Vida con Ahorro</h3><p>Combiná protección y capitalización en un solo plan, con rescate según las condiciones de la póliza.</p></div>
+    </div>
+    <div class="text-center"><button class="btn btn-primary" onclick="solicitarCotizacion('Seguro de Vida / Plan de Ahorro')">Consultar por Vida y Ahorro</button></div>
+  </div>
+</section>
+
+<section id="patrimoniales" class="patrimoniales-section">
+  <div class="container">
+    <div class="section-title text-center">
+      <span class="badge">Protección Integral</span>
+      <h2>Seguros Patrimoniales & Coberturas</h2>
+      <p>Resguardá tus activos personales y la continuidad operacional de tu empresa o PyME.</p>
+    </div>
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="switchTab('personas', event)">👥 Para Personas</button>
+      <button class="tab-btn" onclick="switchTab('empresas', event)">🏢 Para Empresas & PyMEs</button>
+    </div>
+
+    <div id="tab-personas" class="tab-content active">
+      <div class="insurance-grid">
+        <div class="insurance-card"><div class="card-icon">🚗</div><h3>Seguro de Auto / Moto</h3><p>Coberturas contra terceros, todo riesgo, granizo y asistencia mecánica 24hs.</p><button class="btn btn-outline btn-full" onclick="solicitarCotizacion('Auto / Vehículo')">Cotizar Auto</button></div>
+        <div class="insurance-card"><div class="card-icon">🏡</div><h3>Combinado Familiar / Hogar</h3><p>Protección frente a incendio, robo, daños a electrodomésticos y responsabilidad civil.</p><button class="btn btn-outline btn-full" onclick="solicitarCotizacion('Hogar / Combinado Familiar')">Cotizar Hogar</button></div>
+        <div class="insurance-card"><div class="card-icon">🩺</div><h3>Accidentes Personales (AP)</h3><p>Cobertura para trabajadores independientes, profesionales y contratistas.</p><button class="btn btn-outline btn-full" onclick="solicitarCotizacion('Accidentes Personales')">Cotizar AP</button></div>
+        <div class="insurance-card"><div class="card-icon">🎒</div><h3>Bolso Protegido & Movilidad</h3><p>Asegurá tu notebook, smartphone, bicicleta y pertenencias en la vía pública.</p><button class="btn btn-outline btn-full" onclick="solicitarCotizacion('Bolso Protegido / Movilidad')">Cotizar Tecnología</button></div>
+      </div>
+    </div>
+
+    <div id="tab-empresas" class="tab-content">
+      <div class="insurance-grid">
+        <div class="insurance-card"><div class="card-icon">👔</div><h3>A.R.T. (Riesgos del Trabajo)</h3><p>Cobertura legal obligatoria para la nómina de empleados de tu empresa o comercio.</p><button class="btn btn-outline btn-full" onclick="solicitarCotizacion('ART para Empresa')">Solicitar Cotización ART</button></div>
+        <div class="insurance-card"><div class="card-icon">🚚</div><h3>Flotas de Vehículos</h3><p>Planes integrales para vehículos comerciales, utilitarios y logística corporativa.</p><button class="btn btn-outline btn-full" onclick="solicitarCotizacion('Flota de Vehículos')">Cotizar Flotas</button></div>
+        <div class="insurance-card"><div class="card-icon">🏢</div><h3>Integral de Comercio / PyME</h3><p>Resguardo integral para locales, depósitos, mercadería y maquinarias operativas.</p><button class="btn btn-outline btn-full" onclick="solicitarCotizacion('Integral de Comercio')">Cotizar Comercio</button></div>
+        <div class="insurance-card"><div class="card-icon">🛡️</div><h3>Responsabilidad Civil & Vida</h3><p>Seguros de vida obligatorio, convenios colectivos y R.C. frente a terceros.</p><button class="btn btn-outline btn-full" onclick="solicitarCotizacion('Responsabilidad Civil / Vida Colectivo')">Cotizar R.C. / Vida</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="coberturas" class="coverage-section">
+  <div class="container">
+    <div class="section-title text-center">
+      <span class="badge">Qué cubrimos</span>
+      <h2>Coberturas que trabajamos</h2>
+      <p>Soluciones para personas, familias, empresas y equipos de trabajo.</p>
+    </div>
+    <div class="coverage-grid">
+      <div class="coverage-col"><h3>Riesgos personales</h3><ul class="check-list"><li>Automotores</li><li>Motovehículo</li><li>Integral de comercio</li><li>Combinado familiar</li><li>Efectos personales móviles</li><li>Embarcaciones de placer</li><li>Cauciones de alquileres</li><li>Bicicleta</li></ul></div>
+      <div class="coverage-col"><h3>Empresas: riesgo y bienes</h3><ul class="check-list"><li>A.R.T.</li><li>Flotas automotor</li><li>Transportes</li><li>Todo riesgo operativo</li><li>Todo riesgo de construcción y montaje</li><li>Incendio</li><li>Rotura de maquinaria</li></ul></div>
+      <div class="coverage-col"><h3>Empresas: responsabilidad y legal</h3><ul class="check-list"><li>Responsabilidad civil</li><li>Mala praxis</li><li>D&amp;O — directores y gerentes</li><li>E&amp;O — errores y omisiones</li><li>Caución</li><li>Seguro técnico</li><li>Integrales de comercio e industria</li></ul></div>
+      <div class="coverage-col"><h3>Empresas: personas</h3><ul class="check-list"><li>Accidentes personales</li><li>Seguro obligatorio + Ley de Contrato de Trabajo</li><li>Seguros de vida por convenio</li><li>Seguros de vida para socios</li><li>Seguro de hombre clave</li></ul></div>
+      <div class="coverage-col coverage-wide"><h3>Beneficios al personal</h3><ul class="check-list two-cols"><li>Planes de capitalización para socios y empleados</li><li>Programa de retención</li><li>Grupos de afinidad</li><li>Seguro de vida individual</li><li>Medicina prepaga</li><li>Seguro de viaje</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="companias" class="insurers-section">
+  <div class="container">
+    <div class="section-title text-center">
+      <span class="badge">Respaldo</span>
+      <h2>Compañías aseguradoras con las que trabajamos</h2>
+      <p>Comparamos entre distintas compañías para encontrar la propuesta que mejor se adapta a vos.</p>
+    </div>
+    <div class="insurers-grid">
+      <div class="insurer"><strong>Zurich International Life</strong></div>
+      <div class="insurer"><strong>Zurich Seguros</strong></div>
+      <div class="insurer"><strong>Allianz</strong></div>
+      <div class="insurer"><strong>Federación Patronal</strong></div>
+      <div class="insurer"><strong>Grupo Sancor</strong><small>Sancor Seguros · Prevención A.R.T. · Prevención Salud</small></div>
+      <div class="insurer"><strong>Grupo SMG</strong><small>SMG Seguros · Swiss Medical A.R.T. · Swiss Medical Salud</small></div>
+      <div class="insurer"><strong>Galicia Seguros</strong></div>
+      <div class="insurer"><strong>BBVA Seguros</strong></div>
+      <div class="insurer"><strong>Experta Seguros</strong></div>
+      <div class="insurer"><strong>La Holando</strong></div>
+      <div class="insurer"><strong>La Equitativa del Plata</strong></div>
+      <div class="insurer"><strong>CNP Seguros</strong></div>
+    </div>
+  </div>
+</section>
+
+<section id="por-que-elegirme" class="why-section">
+  <div class="container">
+    <div class="section-title text-center">
+      <span class="badge">Por qué elegirme</span>
+      <h2>Un asesoramiento pensado para vos</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card"><span class="why-num n1">01</span><h3>Asesoramiento integral</h3><p>Te acompaño en la contratación y durante toda la vigencia de cada póliza, con claridad sobre lo que estás contratando.</p></div>
+      <div class="why-card"><span class="why-num n2">02</span><h3>Comparo y elijo</h3><p>Analizo coberturas y costos entre distintas compañías para encontrar la propuesta que mejor se adapta a vos.</p></div>
+      <div class="why-card"><span class="why-num n3">03</span><h3>Compañías de primer nivel</h3><p>Trabajo solo con aseguradoras que demostraron fortaleza, seguridad y respuesta ante eventualidades.</p></div>
+      <!-- COMPLETAR: cuando Esteban pase los números, agregar la cantidad de pólizas y/o clientes -->
+      <div class="why-card"><span class="why-num n4">04</span><h3>Trayectoria comprobada</h3><p>Más de 10 años en el mercado asegurador respaldan mi compromiso con cada cliente.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="pillars-section container">
+  <div class="section-title text-center">
+    <h2>¿Por qué iniciar un Plan Financiero?</h2>
+    <p>Estrategias estructuradas para resguardar tu patrimonio frente a imprevistos y la inflación.</p>
+  </div>
+  <div class="pillars-grid">
+    <div class="pillar-card"><div class="pillar-icon">🔒</div><h3>Protección Patrimonial</h3><p>Herramientas diseñadas para mantener el valor de tus ahorros en moneda dura a lo largo del tiempo.</p></div>
+    <div class="pillar-card"><div class="pillar-icon">📈</div><h3>Interés Compuesto</h3><p>Aprovechá la capitalización a largo plazo para multiplicar tu esfuerzo de ahorro individual.</p></div>
+    <div class="pillar-card"><div class="pillar-icon">🤝</div><h3>Atención Personalizada</h3><p>Acompañamiento continuo y revisiones periódicas para adaptar el plan a tus distintas etapas de vida.</p></div>
+  </div>
+</section>
+
+<section class="process-section">
+  <div class="container">
+    <div class="section-title text-center"><h2>Cómo trabajamos juntos</h2><p>Un proceso simple, claro y sin compromiso.</p></div>
+    <div class="steps-grid">
+      <div class="step"><span class="step-num">1</span><h3>Conversamos</h3><p>Una charla inicial para conocer tu situación y tus metas.</p></div>
+      <div class="step"><span class="step-num">2</span><h3>Analizamos</h3><p>Comparo alternativas del mercado y te presento opciones claras.</p></div>
+      <div class="step"><span class="step-num">3</span><h3>Implementamos</h3><p>Te acompaño en la contratación y en todos los trámites.</p></div>
+      <div class="step"><span class="step-num">4</span><h3>Acompaño</h3><p>Revisiones periódicas y asistencia ante siniestros o cambios de etapa.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="faq-section">
+  <div class="container faq-container">
+    <div class="section-title text-center"><h2>Preguntas frecuentes</h2></div>
+    <details class="faq-item"><summary>¿Tiene costo la asesoría?</summary><p>Completá acá tu respuesta (por ejemplo: la consulta inicial es sin cargo y sin compromiso).</p></details>
+    <details class="faq-item"><summary>¿Con qué compañías trabajás?</summary><p>Completá acá con las aseguradoras con las que operás.</p></details>
+    <details class="faq-item"><summary>¿Qué pasa si tengo un siniestro?</summary><p>Completá acá cómo acompañás al cliente y los canales de contacto.</p></details>
+    <details class="faq-item"><summary>¿Puedo rescatar mi ahorro antes de tiempo?</summary><p>Depende de cada plan y de las condiciones de la póliza. Lo vemos juntos antes de contratar.</p></details>
+  </div>
+</section>
+
+<section id="contacto" class="contact-section">
+  <div class="container">
+    <div class="contact-card">
+      <h2>Agendá tu Asesoría Personalizada</h2>
+      <p>Coordinemos un encuentro para analizar tus objetivos particulares y diseñar una estrategia eficiente.</p>
+      <form id="contact-form" class="form-grid">
+        <input type="text" id="nombre" placeholder="Nombre y Apellido" required>
+        <input type="tel" id="telefono" placeholder="Teléfono / WhatsApp" required>
+        <input type="email" id="email" placeholder="Correo electrónico" required>
+        <button type="submit" class="btn btn-primary btn-full">Solicitar Entrevista</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<a href="#" id="float-whatsapp" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contacto por WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+</a>
+
+<footer>
+  <div class="container footer-content">
+    <p>© 2026 Esteban Jiménez — Asesoría Integral & Planificación Financiera.</p>
+    <p class="footer-disclaimer">Productor Asesor de Seguros — Matrícula SSN N° XXXXX. Entidad de control: Superintendencia de Seguros de la Nación (0800-666-8400 · www.argentina.gob.ar/ssn).</p>
+    <p class="footer-disclaimer">Las estimaciones del simulador consideran un rendimiento promedio de referencia y son a título ilustrativo. Cada plan se estructura de forma individual según los objetivos del cliente.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
