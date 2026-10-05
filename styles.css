@@ -197,3 +197,10 @@ footer{background:var(--primary-navy);color:#fff;padding:30px 0;text-align:cente
   .contact-card{padding:28px 20px}
   .check-list.two-cols{columns:1}
 }
+/* Estilos adicionales para la Calculadora de Protección */
+.protection-calc-container {
+  padding-top: 20px;
+}
+.protection-calc-container .calc-results-card {
+  background: linear-gradient(145deg, #0F2537 0%, #003366 100%);
+}

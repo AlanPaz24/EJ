@@ -135,3 +135,75 @@ aboutImg.onerror = function () {
 };
 
 calcularProyeccion();
+
+// --- LÓGICA CALCULADORA DE PROTECCIÓN PATRIMONIAL ---
+const protIngreso = $('prot-ingreso');
+const protEdadHijo = $('prot-edad-hijo');
+const protGastoEdu = $('prot-gasto-edu');
+const protTc = $('prot-tc');
+const btnWaProteccion = $('btn-whatsapp-proteccion');
+
+function calcularProteccion() {
+  const ingresoMensual = parseFloat(protIngreso.value) || 0;
+  const edadHijo = parseInt(protEdadHijo.value) || 0;
+  const gastoEduMensual = parseFloat(protGastoEdu.value) || 0;
+  const tc = parseFloat(protTc.value) || 1;
+
+  if (ingresoMensual <= 0 || tc <= 0) {
+    $('prot-total-usd').textContent = '-';$('prot-vida-usd').textContent = '-';
+    $('prot-salud-usd').textContent = '-';$('prot-edu-usd').textContent = '-';
+    return;
+  }
+
+  // 1. Cobertura Vida (5 años de ingresos)
+  const ingresoAnual = ingresoMensual * 12;
+  const vidaUsd = (ingresoAnual * 5) / tc;
+
+  // 2. Cobertura Enfermedades Graves (2 años de ingresos)
+  const saludUsd = (ingresoAnual * 2) / tc;
+
+  // 3. Cobertura Educación (duración hasta los 25 años)
+  let eduUsd = 0;
+  let duracionEdu = 0;
+  if (edadHijo < 25 && gastoEduMensual > 0) {
+    duracionEdu = 25 - edadHijo;
+    const gastoEduAnual = gastoEduMensual * 12;
+    eduUsd = (gastoEduAnual / tc) * duracionEdu;
+  }
+
+  const totalSumaAseguradaUsd = vidaUsd + saludUsd + eduUsd;
+
+  // Renderizar valores
+  $('prot-total-usd').textContent = usd(totalSumaAseguradaUsd);$('prot-vida-usd').textContent = usd(vidaUsd);
+  $('prot-salud-usd').textContent = usd(saludUsd);$('prot-edu-usd').textContent = usd(eduUsd);
+
+  // Enlace directo a WhatsApp con el desglose del cliente
+  btnWaProteccion.onclick = () => {
+    let msg = `Hola Esteban, realicé el diagnóstico de Suma Asegurada de Vida en tu sitio web:\n\n` +
+      `• *Ingreso/Gasto Mensual:* $${ingresoMensual.toLocaleString('es-AR')} ARS\n` +
+      `• *Tipo de Cambio:* $${tc} ARS/USD\n` +
+      `-----------------------------------\n` +
+      `• *Suma Recomendada Vida (5 años):* ${usd(vidaUsd)}\n` +
+      `• *Suma Enfermedades Graves (2 años):* ${usd(saludUsd)}\n`;
+    
+    if (eduUsd > 0) {
+      msg += `• *Fondo Educación (${duracionEdu} años restantes):* ${usd(eduUsd)}\n`;
+    }
+
+    msg += `-----------------------------------\n` +
+      `🎯 *SUMA ASEGURADA TOTAL SUGERIDA:* ${usd(totalSumaAseguradaUsd)}\n\n` +
+      `Quisiera cotizar la cuota mensual aproximada para este nivel de cobertura.`;
+
+    abrirWhatsapp(msg);
+  };
+}
+
+// Event Listeners
+[protIngreso, protEdadHijo, protGastoEdu, protTc].forEach(el => {
+  if (el) el.addEventListener('input', calcularProteccion);
+});
+
+// Inicializar si existen los elementos en el DOM
+if (protIngreso) {
+  calcularProteccion();
+}
