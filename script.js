@@ -93,9 +93,16 @@ function solicitarCotizacion(tipoSeguro) {
 // Formulario de contacto
 $('contact-form').addEventListener('submit', e => {
   e.preventDefault();
+  const nombre = $('nombre').value;
+  const telefono = $('telefono').value;
+  const email = $('email').value;
+  const disponibilidad = $('disponibilidad').value;
+
   abrirWhatsapp(
-    `Hola Esteban, mi nombre es ${$('nombre').value}. Quisiera solicitar una entrevista para armar un plan financiero personalizado.\n\n` +
-    `• *Teléfono:* ${$('telefono').value}\n• *Email:* ${$('email').value}`
+    `Hola Esteban, mi nombre es ${nombre}. Quisiera solicitar una entrevista para armar un plan financiero personalizado.\n\n` +
+    `• *Teléfono:* ${telefono}\n` +
+    `• *Email:* ${email}\n` +
+    `• *Horarios preferidos:* ${disponibilidad}`
   );
 });
 

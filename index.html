@@ -40,7 +40,7 @@
     </div>
     <div class="hero-card">
       <div class="profile-card-hero">
-        <div class="avatar-container"><img src="esteban.jpg" alt="Esteban Jiménez" class="profile-img-hero" id="hero-img-fallback"></div>
+        <div class="avatar-container"><img src="esteban.jpeg" alt="Esteban Jiménez" class="profile-img-hero" id="hero-img-fallback"></div>
         <h3>Esteban Jiménez</h3>
         <p class="profile-subtitle">Asesor Integral de Inversiones & Retiro</p>
         <p class="profile-quote">"Un plan financiero sólido te da la libertad de elegir cómo querés vivir tu futuro."</p>
@@ -109,10 +109,10 @@
           <div class="breakdown-item"><span>Aporte total estimado:</span><strong id="monto-aportado">$0 USD</strong></div>
           <div class="breakdown-item"><span>Rendimiento generado (7% p.a.):</span><strong id="monto-ganancia" class="highlight-text">$0 USD</strong></div>
           <div class="rentas-header">Renta mensual estimada según plazo:</div>
-          <div class="breakdown-item sub-item"><span>⏱️ Durante 10 años:</span><strong id="renta-10">$0 USD/mes</strong></div>
+          <div class="breakdown-item sub-item"><span>⏱️️ Durante 10 años:</span><strong id="renta-10">$0 USD/mes</strong></div>
           <div class="breakdown-item sub-item"><span>⏱️ Durante 15 años:</span><strong id="renta-15">$0 USD/mes</strong></div>
           <div class="breakdown-item sub-item"><span>⏱️ Durante 20 años:</span><strong id="renta-20">$0 USD/mes</strong></div>
-          <div class="breakdown-item sub-item"><span>⏱️ Durante 25 años:</span><strong id="renta-25">$0 USD/mes</strong></div>
+          <div class="breakdown-item sub-item"><span>⏱️️ Durante 25 años:</span><strong id="renta-25">$0 USD/mes</strong></div>
         </div>
         <p class="calc-disclaimer">*Proyección ilustrativa. La rentabilidad real depende de la estrategia seleccionada, perfil de riesgo y contexto inflacionario.</p>
         <button id="btn-whatsapp-calc" class="btn btn-whatsapp btn-full">
@@ -223,7 +223,6 @@
       <div class="why-card"><span class="why-num n1">01</span><h3>Asesoramiento integral</h3><p>Te acompaño en la contratación y durante toda la vigencia de cada póliza, con claridad sobre lo que estás contratando.</p></div>
       <div class="why-card"><span class="why-num n2">02</span><h3>Comparo y elijo</h3><p>Analizo coberturas y costos entre distintas compañías para encontrar la propuesta que mejor se adapta a vos.</p></div>
       <div class="why-card"><span class="why-num n3">03</span><h3>Compañías de primer nivel</h3><p>Trabajo solo con aseguradoras que demostraron fortaleza, seguridad y respuesta ante eventualidades.</p></div>
-      <!-- COMPLETAR: cuando Esteban pase los números, agregar la cantidad de pólizas y/o clientes -->
       <div class="why-card"><span class="why-num n4">04</span><h3>Trayectoria comprobada</h3><p>Más de 10 años en el mercado asegurador respaldan mi compromiso con cada cliente.</p></div>
     </div>
   </div>
@@ -256,10 +255,22 @@
 <section id="faq" class="faq-section">
   <div class="container faq-container">
     <div class="section-title text-center"><h2>Preguntas frecuentes</h2></div>
-    <details class="faq-item"><summary>¿Tiene costo la asesoría?</summary><p>Completá acá tu respuesta (por ejemplo: la consulta inicial es sin cargo y sin compromiso).</p></details>
-    <details class="faq-item"><summary>¿Con qué compañías trabajás?</summary><p>Completá acá con las aseguradoras con las que operás.</p></details>
-    <details class="faq-item"><summary>¿Qué pasa si tengo un siniestro?</summary><p>Completá acá cómo acompañás al cliente y los canales de contacto.</p></details>
-    <details class="faq-item"><summary>¿Puedo rescatar mi ahorro antes de tiempo?</summary><p>Depende de cada plan y de las condiciones de la póliza. Lo vemos juntos antes de contratar.</p></details>
+    <details class="faq-item">
+      <summary>¿Tiene costo la asesoría?</summary>
+      <p>No, la consulta inicial es 100% gratuita y sin compromiso. Analizamos tu situación actual y evaluamos las mejores opciones del mercado juntas.</p>
+    </details>
+    <details class="faq-item">
+      <summary>¿Con qué compañías trabajás?</summary>
+      <p>Trabajo con aseguradoras líder de primer nivel como Zurich, Allianz, Grupo Sancor, Swiss Medical Group, Federación Patronal, entre otras.</p>
+    </details>
+    <details class="faq-item">
+      <summary>¿Qué pasa si tengo un siniestro?</summary>
+      <p>Me encargo personalmente de acompañarte, asesorarte y realizar toda la gestión de los trámites ante la compañía aseguradora para darte una solución rápida.</p>
+    </details>
+    <details class="faq-item">
+      <summary>¿Puedo rescatar mi ahorro antes de tiempo?</summary>
+      <p>Depende de cada plan y de las condiciones específicas de la póliza. Revisamos los plazos y flexibilidades juntos antes de cualquier contratación.</p>
+    </details>
   </div>
 </section>
 
@@ -269,17 +280,33 @@
       <h2>Agendá tu Asesoría Personalizada</h2>
       <p>Coordinemos un encuentro para analizar tus objetivos particulares y diseñar una estrategia eficiente.</p>
       <form id="contact-form" class="form-grid">
-        <input type="text" id="nombre" placeholder="Nombre y Apellido" required>
-        <input type="tel" id="telefono" placeholder="Teléfono / WhatsApp" required>
-        <input type="email" id="email" placeholder="Correo electrónico" required>
-        <button type="submit" class="btn btn-primary btn-full">Solicitar Entrevista</button>
+        <div class="form-group">
+          <input type="text" id="nombre" placeholder="Nombre y Apellido" required>
+        </div>
+        <div class="form-group">
+          <input type="tel" id="telefono" placeholder="Teléfono / WhatsApp" required>
+        </div>
+        <div class="form-group">
+          <input type="email" id="email" placeholder="Correo electrónico" required>
+        </div>
+        <div class="form-group">
+          <select id="disponibilidad" class="form-select" required>
+            <option value="" disabled selected>Preferencia de horario para reunión</option>
+            <option value="Por la mañana (07:00 a 13:00 hs)">Por la mañana (07:00 a 13:00 hs)</option>
+            <option value="Por la tarde (13:00 a 19:00 hs)">Por la tarde (13:00 a 19:00 hs)</option>
+            <option value="A convenir">A convenir / Horario flexible</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full">Solicitar Entrevista por WhatsApp</button>
       </form>
     </div>
   </div>
 </section>
 
 <a href="#" id="float-whatsapp" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contacto por WhatsApp">
-  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="28" height="28" fill="#ffffff">
+    <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3 18.6-68.1-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+  </svg>
 </a>
 
 <footer>
