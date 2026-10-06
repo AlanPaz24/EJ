@@ -135,7 +135,6 @@ aboutImg.onerror = function () {
 };
 
 calcularProyeccion();
-
 // --- LÓGICA CALCULADORA DE PROTECCIÓN PATRIMONIAL ---
 const protIngreso = $('prot-ingreso');
 const protEdadHijo = $('prot-edad-hijo');
