@@ -13,7 +13,7 @@ const ids = ['monto-final','anios-totales','monto-aportado','monto-ganancia','re
 const out = Object.fromEntries(ids.map(id => [id, $(id)]));
 
 const usd = n => `$${Math.round(n).toLocaleString('es-AR')} USD`;
-const abrirWhatsapp = texto => window.open(`https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(texto)}`, '_blank');
+const abrirWhatsapp = texto => window.open(`https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(texto)}`, '_blank', 'noopener');
 
 // Botón flotante
 $('float-whatsapp').href = `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent("Hola Esteban, estuve navegando en tu sitio web y me gustaría coordinar una reunión para agendar mi asesoría personalizada.")}`;
@@ -68,7 +68,9 @@ function calcularProyeccion() {
       `• *Capital proyectado:* ${usd(capital)}\n\n` +
       `*Opciones de Renta:*\n` +
       `- Renta 10 años: ${usd(r10)}/mes\n` +
-      `- Renta 20 años: ${usd(r20)}/mes\n\n` +
+      `- Renta 15 años: ${usd(r15)}/mes\n` +
+      `- Renta 20 años: ${usd(r20)}/mes\n` +
+      `- Renta 25 años: ${usd(r25)}/mes\n\n` +
       `Quisiera coordinar una reunión para analizar mi caso.`;
     abrirWhatsapp(t);
   };
@@ -121,7 +123,7 @@ navToggle.addEventListener('click', () => {
 });
 navActions.querySelectorAll('a').forEach(a => a.addEventListener('click', cerrarMenu));
 document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarMenu(); });
-window.addEventListener('resize', () => { if (window.innerWidth > 850) cerrarMenu(); });
+window.addEventListener('resize', () => { if (window.innerWidth > 1100) cerrarMenu(); });
 
 // Imágenes de respaldo
 const heroImg = $('hero-img-fallback');
@@ -144,13 +146,15 @@ const btnWaProteccion = $('btn-whatsapp-proteccion');
 
 function calcularProteccion() {
   const ingresoMensual = parseFloat(protIngreso.value) || 0;
-  const edadHijo = parseInt(protEdadHijo.value) || 0;
+  const edadHijoRaw = protEdadHijo.value.trim();
+  const edadHijo = parseInt(edadHijoRaw);
   const gastoEduMensual = parseFloat(protGastoEdu.value) || 0;
-  const tc = parseFloat(protTc.value) || 1;
+  const tc = parseFloat(protTc.value) || 0;
 
   if (ingresoMensual <= 0 || tc <= 0) {
     $('prot-total-usd').textContent = '-';$('prot-vida-usd').textContent = '-';
     $('prot-salud-usd').textContent = '-';$('prot-edu-usd').textContent = '-';
+    btnWaProteccion.onclick = null;
     return;
   }
 
@@ -164,7 +168,8 @@ function calcularProteccion() {
   // 3. Cobertura Educación (duración hasta los 25 años)
   let eduUsd = 0;
   let duracionEdu = 0;
-  if (edadHijo < 25 && gastoEduMensual > 0) {
+  // El campo es opcional: si está vacío no se calcula fondo educativo
+  if (edadHijoRaw !== '' && !isNaN(edadHijo) && edadHijo >= 0 && edadHijo < 25 && gastoEduMensual > 0) {
     duracionEdu = 25 - edadHijo;
     const gastoEduAnual = gastoEduMensual * 12;
     eduUsd = (gastoEduAnual / tc) * duracionEdu;
@@ -205,4 +210,25 @@ function calcularProteccion() {
 // Inicializar si existen los elementos en el DOM
 if (protIngreso) {
   calcularProteccion();
+}
+
+// --- NAVEGACIÓN: botón "volver arriba" + resaltado de sección activa ---
+const btnTop = $('volver-arriba');
+if (btnTop) {
+  const toggleTop = () => btnTop.classList.toggle('visible', window.scrollY > 500);
+  window.addEventListener('scroll', toggleTop, { passive: true });
+  toggleTop();
+}
+
+const navLinks = [...navActions.querySelectorAll('a.nav-link')];
+const secciones = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+if ('IntersectionObserver' in window) {
+  const obs = new IntersectionObserver(entradas => {
+    entradas.forEach(en => {
+      if (en.isIntersecting) {
+        navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id));
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  secciones.forEach(s => obs.observe(s));
 }
