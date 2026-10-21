@@ -1,6 +1,11 @@
 // Número de WhatsApp de Esteban 
 const WHATSAPP_NUMERO = "5491150082797";
-const TASA_ANUAL_FIJA = 0.07;
+// Tasas ANUALES EFECTIVAS (igual que la planilla "Calculadora de Renta" que usa Esteban en reuniones).
+// La tasa mensual se obtiene como (1+tasa)^(1/12)-1, igual que la planilla, y la renta es una cuota
+// vencida (PMT de Excel). Si Esteban cambia la tasa en la planilla, cambiarla acá también.
+const TASA_ACUMULACION = 0.07;  // rendimiento durante los años de ahorro
+const TASA_RENTA = 0.07;        // rendimiento durante los años en que cobra la renta
+const tasaMensual = tasaAnual => Math.pow(1 + tasaAnual, 1 / 12) - 1;
 
 const $ = id => document.getElementById(id);
 const inputEdadActual = $('edad-actual');
@@ -18,11 +23,27 @@ const abrirWhatsapp = texto => window.open(`https://wa.me/${WHATSAPP_NUMERO}?tex
 // Botón flotante
 $('float-whatsapp').href = `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent("Hola Esteban, estuve navegando en tu sitio web y me gustaría coordinar una reunión para agendar mi asesoría personalizada.")}`;
 
-// Renta constante consumiendo el capital durante X años (tasa conservadora)
-function calcularCuotaTemporal(capital, anios, tasaAnual = 0.04) {
-  const meses = anios * 12, i = tasaAnual / 12;
+// Renta mensual constante consumiendo el capital durante X años (equivale a =PMT(tasa_mensual; meses; capital) de Excel)
+function calcularCuotaTemporal(capital, anios, tasaAnual = TASA_RENTA) {
+  const meses = anios * 12, i = tasaMensual(tasaAnual);
   return (capital * i) / (1 - Math.pow(1 + i, -meses));
 }
+
+// Capital que hay que tener al retiro para cobrar `renta` por mes durante `anios` (inversa de calcularCuotaTemporal)
+function capitalNecesario(renta, anios, tasaAnual = TASA_RENTA) {
+  const i = tasaMensual(tasaAnual);
+  return renta * (1 - Math.pow(1 + i, -anios * 12)) / i;
+}
+
+// Ahorro mensual necesario durante `anios` para llegar a `capitalObjetivo` (aportes a fin de mes)
+function ahorroNecesario(capitalObjetivo, ahorroInicial, anios, tasaAnual = TASA_ACUMULACION) {
+  const i = tasaMensual(tasaAnual), g = Math.pow(1 + i, anios * 12);
+  return Math.max(0, (capitalObjetivo - ahorroInicial * g) * i / (g - 1));
+}
+
+const goalBox = $('goal-box');
+const inputObjetivo = $('renta-objetivo');
+const selectPlazo = $('plazo-cobro');
 
 function calcularProyeccion() {
   const edadActual = parseInt(inputEdadActual.value) || 0;
@@ -33,16 +54,17 @@ function calcularProyeccion() {
   if (edadRetiro <= edadActual || (ahorroMensual <= 0 && ahorroInicial <= 0)) {
     ids.forEach(id => out[id].textContent = '-');
     out['monto-final'].textContent = 'Verificar valores';
+    goalBox.hidden = true;
     btnWhatsappCalc.onclick = null;
     return;
   }
 
   const anios = edadRetiro - edadActual;
   const meses = anios * 12;
-  const i = TASA_ANUAL_FIJA / 12;
+  const i = tasaMensual(TASA_ACUMULACION);
 
   let capital = ahorroInicial * Math.pow(1 + i, meses);
-  for (let m = 0; m < meses; m++) capital = (capital + ahorroMensual) * (1 + i);
+  for (let m = 0; m < meses; m++) capital = capital * (1 + i) + ahorroMensual; // aporte a fin de mes (convención de Excel)
 
   const aportado = ahorroInicial + ahorroMensual * meses;
   const r10 = calcularCuotaTemporal(capital, 10);
@@ -59,6 +81,52 @@ function calcularProyeccion() {
   out['renta-20'].textContent = `${usd(r20)}/mes`;
   out['renta-25'].textContent = `${usd(r25)}/mes`;
 
+  // --- Objetivo de retiro: ¿alcanza o falta? ---
+  const objetivo = parseFloat(inputObjetivo.value) || 0;
+  const plazo = parseInt(selectPlazo.value) || 20;
+  let objetivoTexto = '';
+  if (objetivo > 0) {
+    const rentaPlan = calcularCuotaTemporal(capital, plazo);
+    const capNec = capitalNecesario(objetivo, plazo);
+    const ahorroNec = ahorroNecesario(capNec, ahorroInicial, anios);
+    const dif = rentaPlan - objetivo;
+    const cubre = Math.min(100, Math.round(rentaPlan / objetivo * 100));
+    const alcanza = dif >= 0;
+
+    goalBox.hidden = false;
+    const st = $('goal-status');
+    st.className = 'goal-status ' + (alcanza ? 'ok' : 'gap');
+    st.textContent = alcanza
+      ? `✅ ¡Alcanzás tu objetivo! Superás tu meta por ${usd(dif)}/mes.`
+      : `⚠️ Te faltan ${usd(-dif)}/mes para tu objetivo: tu plan cubre el ${cubre}%.`;
+    const fill = $('goal-bar-fill');
+    fill.style.width = cubre + '%';
+    fill.className = 'goal-bar-fill' + (alcanza ? ' ok' : '');
+    $('goal-objetivo').textContent = `${usd(objetivo)}/mes (${plazo} años)`;
+    $('goal-renta').textContent = `${usd(rentaPlan)}/mes`;
+    $('goal-capital-nec').textContent = usd(capNec);
+    $('goal-ahorro-nec').textContent = alcanza
+      ? `Ya lo cubrís con ${usd(ahorroMensual)}/mes`
+      : `${usd(ahorroNec)}/mes (hoy: ${usd(ahorroMensual)})`;
+
+    // Costo de esperar: ahorro necesario si se empieza 5 años más tarde
+    const espera = $('goal-wait');
+    if (anios > 5) {
+      const ahorroTarde = ahorroNecesario(capNec, ahorroInicial, anios - 5);
+      const base = alcanza ? Math.max(ahorroNec, 0) : ahorroNec;
+      espera.textContent = base > 0
+        ? `⏳ Costo de esperar: si empezás dentro de 5 años, para llegar a la misma meta necesitarías ahorrar ${usd(ahorroTarde)}/mes (${Math.round((ahorroTarde / base - 1) * 100)}% más).`
+        : `⏳ Si empezaras dentro de 5 años, necesitarías ahorrar ${usd(ahorroTarde)}/mes para esta meta.`;
+    } else espera.textContent = '';
+
+    objetivoTexto = `• *Objetivo de retiro:* ${usd(objetivo)}/mes durante ${plazo} años\n` +
+      (alcanza
+        ? `• *Resultado:* alcanzo mi objetivo (renta estimada ${usd(rentaPlan)}/mes)\n`
+        : `• *Resultado:* me faltan ${usd(-dif)}/mes (cubro el ${cubre}%). Ahorro necesario: ${usd(ahorroNec)}/mes\n`) + `\n`;
+  } else {
+    goalBox.hidden = true;
+  }
+
   btnWhatsappCalc.onclick = () => {
     let t = `Hola Esteban, estuve en tu sitio web y proyecté mi retiro:\n\n` +
       `• *Edad actual:* ${edadActual} años\n` +
@@ -66,6 +134,7 @@ function calcularProyeccion() {
     if (ahorroInicial > 0) t += `• *Ahorro previo inicial:* ${usd(ahorroInicial)}\n`;
     t += `• *Ahorro mensual:* ${usd(ahorroMensual)}/mes\n` +
       `• *Capital proyectado:* ${usd(capital)}\n\n` +
+      objetivoTexto +
       `*Opciones de Renta:*\n` +
       `- Renta 10 años: ${usd(r10)}/mes\n` +
       `- Renta 15 años: ${usd(r15)}/mes\n` +
@@ -76,7 +145,7 @@ function calcularProyeccion() {
   };
 }
 
-[inputEdadActual, inputEdadRetiro, inputAhorroInicial, inputAhorroMensual]
+[inputEdadActual, inputEdadRetiro, inputAhorroInicial, inputAhorroMensual, inputObjetivo, selectPlazo]
   .forEach(el => el.addEventListener('input', calcularProyeccion));
 
 // Pestañas Personas / Empresas
@@ -162,8 +231,8 @@ function calcularProteccion() {
   const ingresoAnual = ingresoMensual * 12;
   const vidaUsd = (ingresoAnual * 5) / tc;
 
-  // 2. Cobertura Enfermedades Graves (2 años de ingresos)
-  const saludUsd = (ingresoAnual * 2) / tc;
+  // 2. Cobertura Enfermedades Graves (5 años de ingresos)
+  const saludUsd = (ingresoAnual * 5) / tc;
 
   // 3. Cobertura Educación (duración hasta los 25 años)
   let eduUsd = 0;
@@ -188,7 +257,7 @@ function calcularProteccion() {
       `• *Tipo de Cambio:* $${tc} ARS/USD\n` +
       `-----------------------------------\n` +
       `• *Suma Recomendada Vida (5 años):* ${usd(vidaUsd)}\n` +
-      `• *Suma Enfermedades Graves (2 años):* ${usd(saludUsd)}\n`;
+      `• *Suma Enfermedades Graves (5 años):* ${usd(saludUsd)}\n`;
     
     if (eduUsd > 0) {
       msg += `• *Fondo Educación (${duracionEdu} años restantes):* ${usd(eduUsd)}\n`;

@@ -78,7 +78,7 @@
   <div class="container">
     <div class="section-title text-center">
       <h2>Simulador de Fondo de Retiro</h2>
-      <p>Ingresá tus datos para estimar el capital acumulado y las opciones de renta para tu retiro.</p>
+      <p>Ingresá tus datos para estimar el capital acumulado y las opciones de renta para tu retiro. Si querés, indicá con qué ingreso mensual te gustaría retirarte y te decimos si lo alcanzás.</p>
     </div>
     <div class="calculator-grid">
       <div class="calc-inputs-card">
@@ -99,6 +99,25 @@
           <label for="ahorro-mensual">Ahorro mensual previsto</label>
           <div class="input-wrapper"><span class="currency">$</span><input type="number" id="ahorro-mensual" value="300" min="50" step="50"><span class="unit">USD</span></div>
         </div>
+        <div class="goal-fields">
+          <div class="goal-fields-title">🎯 Tu objetivo de retiro (opcional)</div>
+          <div class="field-group">
+            <label for="renta-objetivo">¿Con qué ingreso mensual te gustaría retirarte?</label>
+            <div class="input-wrapper"><span class="currency">$</span><input type="number" id="renta-objetivo" value="5000" min="0" step="100"><span class="unit">USD/mes</span></div>
+            <small class="field-help">Pensalo en dólares de hoy. Dejalo vacío si solo querés ver la proyección.</small>
+          </div>
+          <div class="field-group">
+            <label for="plazo-cobro">¿Durante cuántos años querés cobrarlo?</label>
+            <div class="input-wrapper">
+              <select id="plazo-cobro">
+                <option value="10">10 años</option>
+                <option value="15">15 años</option>
+                <option value="20" selected>20 años</option>
+                <option value="25">25 años</option>
+              </select>
+            </div>
+          </div>
+        </div>
         <div class="rate-info-box"><span>Rendimiento proyectado de referencia:</span><strong>7.0% anual en USD</strong></div>
       </div>
 
@@ -118,7 +137,16 @@
           <div class="breakdown-item sub-item"><span>⏱️ Durante 20 años:</span><strong id="renta-20">$0 USD/mes</strong></div>
           <div class="breakdown-item sub-item"><span>⏱️ Durante 25 años:</span><strong id="renta-25">$0 USD/mes</strong></div>
         </div>
-        <p class="calc-disclaimer">*Proyección ilustrativa, no garantizada. La rentabilidad real depende de la estrategia seleccionada, perfil de riesgo y contexto inflacionario. La renta mensual se estima consumiendo el capital con una tasa de referencia del 4% anual.</p>
+        <div class="goal-box" id="goal-box" hidden>
+          <div class="goal-status" id="goal-status"></div>
+          <div class="goal-bar" aria-hidden="true"><div class="goal-bar-fill" id="goal-bar-fill"></div></div>
+          <div class="breakdown-item"><span>Tu objetivo mensual:</span><strong id="goal-objetivo">-</strong></div>
+          <div class="breakdown-item"><span>Renta estimada con tu plan:</span><strong id="goal-renta">-</strong></div>
+          <div class="breakdown-item"><span>Capital que necesitarías al retiro:</span><strong id="goal-capital-nec">-</strong></div>
+          <div class="breakdown-item"><span>Ahorro mensual necesario:</span><strong id="goal-ahorro-nec" class="highlight-text">-</strong></div>
+          <p class="goal-wait" id="goal-wait"></p>
+        </div>
+        <p class="calc-disclaimer">*Proyección ilustrativa, no garantizada. La rentabilidad real depende de la estrategia seleccionada, perfil de riesgo y contexto inflacionario. La renta mensual se estima consumiendo el capital (capital + rendimiento) durante el plazo elegido, con el mismo rendimiento de referencia.</p>
         <button id="btn-whatsapp-calc" class="btn btn-whatsapp btn-full">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
           Enviar este cálculo a Esteban por WhatsApp
@@ -203,7 +231,7 @@
           <strong id="prot-vida-usd">$0 USD</strong>
         </div>
         <div class="breakdown-item">
-          <span>🩺 Enfermedades Graves (2 años de ingresos):</span>
+          <span>🩺 Enfermedades Graves (5 años de ingresos):</span>
           <strong id="prot-salud-usd" class="highlight-text">$0 USD</strong>
         </div>
         <div class="breakdown-item">

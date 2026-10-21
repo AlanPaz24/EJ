@@ -228,3 +228,18 @@ footer{background:var(--primary-navy);color:#fff;padding:30px 0;text-align:cente
 }
 @media (max-width:480px){.brand-title{display:none}}
 .life-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
+
+/* Objetivo de retiro */
+.goal-fields{border:1px dashed var(--accent-cyan);border-radius:10px;padding:16px 16px 2px;margin:4px 0 18px;background:#F0F9FD}
+.goal-fields-title{font-weight:700;color:var(--primary-navy);margin-bottom:12px;font-size:.95rem}
+.input-wrapper select{width:100%;padding:12px 0;border:none;background:transparent;font-size:1.05rem;font-weight:700;color:var(--primary-navy);outline:none;font-family:inherit;cursor:pointer}
+.goal-box{margin:16px 0 4px;padding:16px;border-radius:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15)}
+.goal-box[hidden]{display:none}
+.goal-status{font-weight:700;font-size:1.02rem;line-height:1.35;margin-bottom:12px}
+.goal-status.ok{color:#4ADE80}
+.goal-status.gap{color:#FBBF24}
+.goal-bar{height:10px;border-radius:6px;background:rgba(255,255,255,.15);overflow:hidden;margin-bottom:10px}
+.goal-bar-fill{height:100%;width:0;border-radius:6px;background:#FBBF24;transition:width .4s ease}
+.goal-bar-fill.ok{background:#4ADE80}
+.goal-wait{font-size:.82rem;opacity:.85;margin:10px 0 0;line-height:1.4}
+.goal-wait:empty{display:none}
